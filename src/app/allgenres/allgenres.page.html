@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="explore"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Géneros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <form [formGroup]="selector" novalidate>
+      <ion-item-sliding>
+        <ion-item (click)="clickFilter()">
+          <ion-label>Categorías</ion-label><ion-icon name="{{iconSelector}}"></ion-icon>
+        </ion-item>
+        <ion-item lines="none" *ngIf="showSelector">
+          <ion-toggle color="secondary" formControlName="narrativa"></ion-toggle>
+          <ion-label style="margin-left: 5px">Narrativa</ion-label>
+        </ion-item>
+        <ion-item lines="none" *ngIf="showSelector">
+          <ion-toggle color="secondary" formControlName="musical"></ion-toggle>
+          <ion-label style="margin-left: 5px">Musical</ion-label>
+        </ion-item>
+        <ion-item lines="none" *ngIf="showSelector">
+          <ion-toggle color="secondary" formControlName="manga"></ion-toggle>
+          <ion-label style="margin-left: 5px">Manga</ion-label>
+        </ion-item>
+        <ion-item *ngIf="showSelector">
+          <ion-toggle color="secondary" formControlName="gaming"></ion-toggle>
+          <ion-label style="margin-left: 5px">Gaming</ion-label>
+        </ion-item>
+      </ion-item-sliding>
+      <ion-item-sliding *ngFor="let g of genres">
+      <ion-item detail (click)="goToGenre(g.GenreID)" *ngIf="selector.value[g.GenreType]">
+        <ion-icon top name="bookmark-outline"></ion-icon>
+        <span>{{g.GenreName}} ({{g.GenreType}})</span>
+      </ion-item>
+    </ion-item-sliding>
+    </form>
+  </ion-list>
+  <br />
+</ion-content>

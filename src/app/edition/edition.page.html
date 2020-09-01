@@ -1,0 +1,96 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{itemName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item-sliding>
+      <ion-item class="ion-card"><ion-grid><ion-row>
+        <ion-label style="margin-left: 5px;" class="ion-text-wrap">
+          <h1><ion-icon name="{{typeIcon}}" style="margin: 0 5px;"></ion-icon>
+            <strong>{{itemName}}</strong></h1>
+            <div><ion-button top expand="inline" (click)="goToItem()">Ver todas las ediciones</ion-button></div>
+        </ion-label>
+      </ion-row>
+      <ion-row>
+        <ion-chip *ngFor="let p of people">
+          <ion-icon name="person"></ion-icon> 
+          <a href="/person/{{p.PersonID}}" class="chiplink">
+          <app-persona Names="{{p.Names}}" LastNames="{{p.LastNames}}" Role="{{p.Role}}"></app-persona>
+          </a>
+          <ion-icon name="close" (click)="removePerson(p.PersonID, p.Role)"></ion-icon>
+        </ion-chip>
+        <ion-chip (click)="addPerson()">
+          <ion-icon name="person-add"></ion-icon><ion-label>Agregar</ion-label>
+        </ion-chip>
+      </ion-row>
+      <ion-row>
+      <ion-chip *ngIf="seriesID>0">
+        <ion-icon name="pricetag"></ion-icon> 
+        <ion-label>
+          <strong>Serie: </strong> 
+          <a href="/series/{{seriesID}}" class="chiplink">{{seriesName}}</a>
+        </ion-label>
+      </ion-chip>
+      <ion-chip *ngIf="genreID1>0">
+        <ion-icon name="bookmark"></ion-icon>
+        <ion-label>
+          <strong></strong> 
+          <a href="/genre/{{genreID1}}" class="chiplink">{{genreName1}}</a>
+        </ion-label>
+      </ion-chip>
+      <ion-chip *ngIf="genreID2>0">
+        <ion-icon name="bookmark"></ion-icon>
+        <ion-label>
+          <strong></strong> 
+          <a href="/genre/{{genreID2}}" class="chiplink">{{genreName2}}</a>
+        </ion-label>
+      </ion-chip>
+      <ion-chip *ngIf="genreID3>0">
+        <ion-icon name="bookmark"></ion-icon>
+        <ion-label>
+          <strong></strong> 
+          <a href="/genre/{{genreID3}}" class="chiplink">{{genreName3}}</a>
+        </ion-label>
+      </ion-chip>
+      </ion-row>
+      <ion-row>
+        <app-website-list [id]="id" type="edition"></app-website-list>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+  </ion-item-sliding>
+  <ion-item-sliding>
+    <ion-item class="ion-card">
+      <ion-grid>
+        <ion-row>
+          <ion-col *ngIf="type === 'book'">
+            <!--<app-detail-book [book]="edicion" [id]="id"></app-detail-book>-->
+            <app-detail-book [id]="id"></app-detail-book>
+          </ion-col>
+          <ion-col *ngIf="type === 'music'">
+            <app-detail-music [id]="id"></app-detail-music>
+          </ion-col>
+          <ion-col *ngIf="type === 'video'">
+            <app-detail-video [id]="id"></app-detail-video>
+          </ion-col>
+          <ion-col *ngIf="type === 'game'">
+            <app-detail-game [id]="id"></app-detail-game>
+          </ion-col>
+          <ion-col *ngIf="type === 'comic'">
+            <app-detail-comic [id]="id"></app-detail-comic>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

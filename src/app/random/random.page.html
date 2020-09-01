@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="explore"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Más colecciones
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let col of colecciones">
+      <ion-item detail button (click)='goToCollection(col.CollectionID)'>
+        <ion-icon name="albums"></ion-icon> 
+        <div style="margin-left: 5px;" class="ion-text-wrap">{{ col.CollectionName }}<br />
+          <small *ngIf="col.Nickname">&nbsp;{{col.Nickname}}</small>
+          <small *ngIf="!col.Nickname">&nbsp;Usuario #{{col.UserID}}</small>
+        </div>
+      </ion-item>
+    </ion-item-sliding>
+    <ion-button shape="round" color="primary" expand="block" (click)="refresh()">
+      <ion-icon name="refresh"></ion-icon>Refrescar</ion-button>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Configuración</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!--<ion-avatar slot="end">
+    <img src="{{user.photoURL}}" />
+  </ion-avatar>-->
+  <!--<ion-thumbnail slot="start">
+    <ion-img [src]="user.photoURL"></ion-img>
+  </ion-thumbnail>-->
+  <form [formGroup]="userform" (ngSubmit)="setNickname()" novalidate>
+  <ion-list *ngIf="user">
+    <ion-item><h3>Detalles de Usuario</h3></ion-item>
+    <ion-item><ion-label><strong>Email:</strong> {{user.email}}</ion-label></ion-item>
+    <ion-item><ion-label><strong>Apodo:</strong></ion-label> 
+      <ion-input #nickname placeholder="Escribe" formControlName="nickname"
+      [value]="nickname"></ion-input>
+      <ion-button color="primary" type="submit" >Editar</ion-button>
+    </ion-item>
+    <!--<ion-item><ion-label><strong>UID:</strong> {{user.uid}}</ion-label></ion-item>-->
+    <!--<ion-item><a href="{{user.photoURL}}">{{user.photoURL}}</a></ion-item>-->
+  </ion-list>
+  <ion-button (click)="signout()" expand="block">Cerrar sesión</ion-button>
+</form>
+</ion-content>

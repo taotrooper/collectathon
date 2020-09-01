@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>
+      Agregar a colección
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="edition" (ngSubmit)="submitForm()" novalidate>
+    <ion-list>
+      <ion-item lines="full">
+        <ion-label position="stacked">Selecciona una de tus ediciones</ion-label>
+        <ion-select #EditionID okText="Aceptar" cancelText="Cancelar" interface="popover" placeholder="Seleccionar" 
+          formControlName="EditionID" type="text">
+          <ion-select-option *ngFor="let e of ediciones" [value]="e.EditionID">
+            {{e.ItemName}} ({{e.Summary}})</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-grid style="text-align: center;">
+      <ion-row>
+        <ion-col>
+          <ion-button expand="inline" shape="round" color="primary" type="submit">Enviar</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="inline" shape="round" color="primary" (click)="closeModal()">Cancelar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+</ion-content>

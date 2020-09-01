@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="explore"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Búsqueda avanzada</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding [fullscreen]="true">
+  <form [formGroup]="formcriteria" (ngSubmit)="addCriteria()" novalidate>
+    <ion-list>
+      <ion-item lines="full">
+        <ion-label position="stacked">Selecciona tipo de ítem</ion-label>
+        <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+        formControlName="tipo" type="text" (ionChange)="changeType()">
+          <ion-select-option value="all">Todos</ion-select-option>
+          <ion-select-option value="book">Libro</ion-select-option>
+          <ion-select-option value="music">Música</ion-select-option>
+          <ion-select-option value="video">Vídeo</ion-select-option>
+          <ion-select-option value="game">Videojuego</ion-select-option>
+          <ion-select-option value="comic">Comic</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item lines="full">
+        <small>Asigna al menos un criterio de búsqueda:</small>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Campo" 
+        formControlName="campo" type="text">
+          <ion-select-option value="ItemName">Título</ion-select-option>
+          <ion-select-option value="Year">Año de edición</ion-select-option>
+          <ion-select-option value="EAN13">EAN13</ion-select-option>
+          <ion-select-option *ngFor="let d of campos2" [value]="d.campo">{{d.nombre}}</ion-select-option>
+          <div *ngIf="formcriteria.value['tipo']=='book'">
+            <ion-select-option value="ISBN">ISBN</ion-select-option>
+            <ion-select-option value="Editorial">Editorial</ion-select-option>
+            <ion-select-option value="Idioma">Idioma</ion-select-option>
+            <ion-select-option value="Tipo">Tipo (bolsillo, tapa dura, ebook...)</ion-select-option>
+          </div>
+          <div *ngIf="formcriteria.value['tipo']=='music'">
+            <ion-select-option value="Formato">Formato (CD, vinilo, digital...)</ion-select-option>
+            <ion-select-option value="Sello">Sello</ion-select-option>
+          </div>
+          <div *ngIf="formcriteria.value['tipo']=='video'">
+            <ion-select-option value="FormatoVideo">Formato (DVD, Bluray...)</ion-select-option>
+            <ion-select-option value="TipoVideo">Tipo (Película, serie...)</ion-select-option>
+            <ion-select-option value="Sistema">Sistema (PAL, NTSC...)</ion-select-option>
+            <ion-select-option value="RegionVideo">Región</ion-select-option>
+            <ion-select-option value="Temporada">Temporada</ion-select-option>
+          </div>
+          <div *ngIf="formcriteria.value['tipo']=='game'">
+            <ion-select-option value="Plataforma">Plataforma/consola</ion-select-option>
+            <ion-select-option value="FormatoJuego">Formato (físico/digital...)</ion-select-option>
+            <ion-select-option value="RegionJuego">Región</ion-select-option>
+            <ion-select-option value="Distribuidora">Distribuidora</ion-select-option>
+            <ion-select-option value="Estudio">Estudio</ion-select-option>
+          </div>
+          <div *ngIf="formcriteria.value['tipo']=='comic'">
+            <ion-select-option value="TipoComic">Tipo (grapas, tomo, omnibus)</ion-select-option>
+            <ion-select-option value="Origen">Origen (norteamericano, manga, europeo...</ion-select-option>
+            <ion-select-option value="ISBNComic">ISBN</ion-select-option>
+            <ion-select-option value="EditorialComic">Editorial</ion-select-option>
+            <ion-select-option value="IdiomaComic">Idioma</ion-select-option>
+            <ion-select-option value="FormatoComic">Formato (físico/digital)</ion-select-option>
+            <ion-select-option value="NroComic">Número</ion-select-option>
+          </div>
+        </ion-select>
+        <ion-input placeholder="Valor" formControlName="valor" type="text"></ion-input>
+        <ion-button shape="round" color="primary" type="submit">Añadir</ion-button>
+      </ion-item>
+    <ion-item lines="full" *ngIf="criteria.length<1">No hay criterios de búsqueda.</ion-item>
+    <ion-item lines="full" *ngIf="criteria.length>=1">
+      <ion-chip *ngFor="let a of criteria">{{a.campo}} = {{a.valor}}<button ion-button (click)="removeCriteria(a)">x</button></ion-chip>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" shape="round" color="primary" (click)="process()">Aceptar</ion-button>
+  <ion-list *ngIf="numres!==null">
+    <ion-item lines="full"><small>Mostrando {{numres}} resultados.</small></ion-item>
+    <ion-item-sliding *ngFor="let ed of items">
+      <app-edition-list [ed]="ed"></app-edition-list>
+    </ion-item-sliding>
+  </ion-list>
+</form>
+</ion-content>

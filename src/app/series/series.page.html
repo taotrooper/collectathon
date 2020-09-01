@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="allseries"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list>
+    <ion-item-sliding>
+      <ion-label style="margin-left: 5px;" class="ion-text-wrap">
+        <small>Esta serie está marcada como <span *ngIf="finished==0">no</span> terminada.</small>
+      </ion-label>
+    </ion-item-sliding>
+    <ion-item-sliding *ngIf="itemCount <= 0">
+      <ion-label style="margin-left: 5px;" class="ion-text-wrap">No existen ediciones para esta serie.</ion-label>
+    </ion-item-sliding>
+    <ion-item-sliding *ngFor="let i of items">
+      <ion-item detail (click)="goToItem(i.ItemID, i.ItemType)">
+        <ion-icon top name={{http.getItemTypeIcon(i.ItemType)}}></ion-icon>
+        <ion-label style="margin-left: 5px;" class="ion-text-wrap">{{ i.ItemSummary }}</ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-grid>
+    <ion-row>
+      <ion-button *ngIf="creatorUser==user" (click)="goToEditSeries()">Editar serie</ion-button>
+      <ion-button *ngIf="creatorUser==user && itemCount==0" (click)="deleteSeries()" color="danger">Eliminar serie</ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>

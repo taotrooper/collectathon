@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Explorar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding [fullscreen]="true">
+  <ion-list class="ion-text-wrap" style="text-align: center">
+  <ion-button expand="block" fill="outline" shape="round" href="/add-book">
+    <ion-icon name="book"></ion-icon>&nbsp;&nbsp;Explorar libros</ion-button>
+  <ion-button expand="block" fill="outline" shape="round" href="/add-music">
+    <ion-icon name="musical-notes"></ion-icon>&nbsp;&nbsp;Explorar álbumes</ion-button>
+  <ion-button expand="block" fill="outline" shape="round" href="/add-video">
+    <ion-icon name="film"></ion-icon>&nbsp;&nbsp;Explorar vídeos</ion-button>
+  <ion-button expand="block" fill="outline" shape="round" href="/add-game">
+    <ion-icon name="game-controller"></ion-icon>&nbsp;&nbsp;Explorar videojuegos</ion-button>
+  <ion-button expand="block" fill="outline" shape="round" href="/add-comic">
+    <ion-icon name="chatbubbles"></ion-icon>&nbsp;&nbsp;Explorar cómics</ion-button>
+  <ion-button expand="block" fill="outline" shape="round" href="/search">
+    <ion-icon name="search"></ion-icon>&nbsp;&nbsp;Búsqueda avanzada</ion-button>
+  <ion-grid style="padding: 0">
+    <ion-row style="padding: 0">
+      <ion-col style="padding: 0">
+        <ion-button expand="block" fill="outline" shape="round" href="allpeople">Gente</ion-button>
+      </ion-col>
+      <ion-col style="padding: 0">
+        <ion-button expand="block" fill="outline" shape="round" href="/allseries">Series</ion-button>
+      </ion-col>
+      <ion-col style="padding: 0">
+        <ion-button expand="block" fill="outline" shape="round" href="/allgenres">Géneros</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-button expand="block" fill="outline" shape="round" href="/random">
+    <ion-icon name="archive"></ion-icon>&nbsp;&nbsp;Ver otras colecciones</ion-button>
+</ion-list>
+</ion-content>

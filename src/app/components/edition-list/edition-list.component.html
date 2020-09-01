@@ -1,0 +1,11 @@
+<ion-item detail (click)="goToEdition(ed.EditionID, ed.ItemType)">
+  <ion-avatar slot="end">
+    <img src="{{thumburl}}" *ngIf="thumburl" style="border: 3px solid #c3c3c3;" />
+  </ion-avatar>
+  <ion-icon top name={{http.getItemTypeIcon(ed.ItemType)}}></ion-icon>
+  <ion-icon *ngIf="ed.IsOwned==1" name="checkmark-circle-outline"></ion-icon>
+  <ion-icon *ngIf="ed.IsOwned==0" name="heart-circle-outline"></ion-icon>
+  <ion-label style="margin-left: 5px;" class="ion-text-wrap"><h2>{{ ed.ItemName }}</h2>
+    <small>{{ ed.Summary }}</small>
+  </ion-label>
+</ion-item>

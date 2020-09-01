@@ -1,0 +1,104 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="exitApp()"><ion-icon name="close"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>
+      Collectathon
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-text class="ion-padding">
+      </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div style="text-align: center;" size="large">
+          <a href="/collections" style="border: none;">
+          <ion-icon name="archive" style="font-size: 2em;"></ion-icon></a><br />
+          <ion-label>Mis colecciones</ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div style="text-align: center;">
+          <a href="/myitems" style="border: none;">
+          <ion-icon name="library" style="font-size: 2em;"></ion-icon></a><br />
+          <ion-label>Todos mis items</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div style="text-align: center;" size="large">
+          <a href="/mybooks" style="border: none;">
+          <ion-icon name="book" style="font-size: 2em;"></ion-icon></a><br />
+          <ion-label>Mis libros</ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div style="text-align: center;">
+          <a href="/mymusic" style="border: none;">
+          <ion-icon name="musical-notes" style="font-size: 2em;"></ion-icon></a><br />
+          <ion-label>Mi música</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div style="text-align: center;">
+          <a href="/myvideo" style="border: none;">
+          <ion-icon name="film" style="font-size: 2em;"></ion-icon></a><br />
+          <ion-label>Mi vídeos</ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div style="text-align: center;">
+          <a href="/mygames" style="border: none;">
+          <ion-icon name="game-controller" style="font-size: 2em;"></ion-icon></a><br />
+          <ion-label>Mis videojuegos</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div style="text-align: center;">
+          <a href="/mycomics" style="border: none;">
+          <ion-icon name="chatbubbles" style="font-size: 2em;"></ion-icon></a><br />
+          <ion-label>Mis cómics</ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div style="text-align: center;">
+          <a href="/wishlist" style="border: none;">
+          <ion-icon name="heart" style="font-size: 2em;"></ion-icon></a><br />
+          <ion-label>Lista de deseos</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div style="text-align: center;">
+          <a href="/explore" style="border: none;">
+          <ion-icon name="search" style="font-size: 2em;"></ion-icon></a><br />
+          <ion-label>Explorar</ion-label>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div style="text-align: center;">
+          <a href="/user" style="border: none;">
+          <ion-icon name="settings" style="font-size: 2em;"></ion-icon></a><br />
+          <ion-label>Configuración</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

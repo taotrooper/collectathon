@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear edición juego</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding [fullscreen]="true">
+  <form [formGroup]="newedition" (ngSubmit)="submitForm()" novalidate>
+    <ion-list>
+      <ion-item lines="full">
+        <ion-label position="stacked">Año de edición</ion-label>
+        <ion-input placeholder="Ejemplo: 2020" [value]="newedition.Year" formControlName="Year" 
+        type="text"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">EAN13</ion-label>
+        <ion-input placeholder="Ejemplo: 8491234567890" formControlName="EAN13" type="text"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">Plataforma o consola</ion-label>
+        <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+        formControlName="Plataforma" type="text" value="{{newedition.Plataforma}}">
+          <ion-select-option *ngFor="let p of PlataformaLista" [value]="p">{{p}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">Formato de juego</ion-label>
+        <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+        formControlName="FormatoJuego" type="text" value="{{newedition.FormatoJuego}}">
+          <ion-select-option *ngFor="let f of FormatoLista" [value]="f">{{f}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">Región</ion-label>
+        <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+        formControlName="RegionJuego" type="text" value="{{newedition.RegionJuego}}">
+          <ion-select-option *ngFor="let r of RegionLista" [value]="r">{{r}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">Distribuidora</ion-label>
+        <ion-input placeholder="Ejemplo: CAPCOM" [value]="newedition.Distribuidora" formControlName="Distribuidora" 
+        type="text"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">Estudio</ion-label>
+        <ion-input placeholder="Ejemplo: Santa Monica Studio" [value]="newedition.Estudio" formControlName="Estudio" 
+        type="text"></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">Notas de la edición (remasterizado, ed. especial, etc.)</ion-label>
+        <ion-input placeholder="Ejemplo: Edición coleccionista" [value]="newedition.NotasEdJuego" 
+        formControlName="NotasEdJuego" 
+        type="text"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" shape="round" color="primary" type="submit">Enviar</ion-button>
+  </form>
+</ion-content>

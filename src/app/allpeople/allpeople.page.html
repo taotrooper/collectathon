@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="explore"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Gente</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item-sliding *ngFor="let p of people">
+      <ion-item detail (click)="goToPerson(p.PersonID)" *ngIf="p.CreatorUserID>0">
+        <ion-icon top name="person-outline"></ion-icon>
+        <app-persona Names="{{p.Names}}" LastNames="{{p.LastNames}}"></app-persona>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="primary">
+      <ion-icon name="add" (click)="goToNewPerson()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

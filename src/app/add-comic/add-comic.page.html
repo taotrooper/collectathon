@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/explore"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Explorar cómics
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item class="ion-text-wrap">
+      <small>Selecciona ítem para ver sus ediciones o crea uno nuevo si no está en la lista.</small>
+    </ion-item>
+    <ion-searchbar placeholder="Buscar..." [formControl]="searchControl"></ion-searchbar>
+    <div *ngIf="!items">
+    <ion-item-sliding *ngFor="let i of comics">
+      <ion-item detail (click)="goToItem(i.ItemID)">
+        <ion-label *ngIf="i.ItemSummary" style="margin-left: 5px;" class="ion-text-wrap">
+          {{ i.ItemSummary }}
+        </ion-label>
+      </ion-item>
+    </ion-item-sliding>
+    </div>
+    <div *ngIf="items">
+      <ion-item-sliding *ngFor="let i of items">
+        <ion-item detail (click)="goToItem(i.ItemID)">
+          <ion-label *ngIf="i.ItemSummary" style="margin-left: 5px;" class="ion-text-wrap">
+            {{ i.ItemSummary }}
+          </ion-label>
+        </ion-item>
+      </ion-item-sliding>
+    </div>
+    <ion-button color="primary" expand="block" shape="round" (click)="goToNewComic()">
+      <ion-icon name="add"></ion-icon>
+      <ion-label>Crear nuevo cómic</ion-label>
+    </ion-button>
+  </ion-list>
+</ion-content>

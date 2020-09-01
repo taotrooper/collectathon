@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="allpeople"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{names}} {{lastnames}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item><h1>{{names}} {{lastnames}}</h1></ion-item>
+  <ion-item><app-website-list [id]="id" type="person"></app-website-list></ion-item>
+  <ion-list>
+    <ion-item-sliding *ngIf="itemCount <= 0">
+      <ion-label style="margin-left: 5px;" class="ion-text-wrap">No existen items para esta persona.</ion-label>
+    </ion-item-sliding>
+    <ion-item-sliding *ngFor="let i of items">
+      <ion-item detail (click)="goToItem(i.ItemID, i.ItemType)">
+        <ion-icon top name={{http.getItemTypeIcon(i.ItemType)}}></ion-icon>
+        <ion-label style="margin-left: 5px;" class="ion-text-wrap">{{ i.ItemSummary }}</ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-grid>
+    <ion-row>
+      <ion-button *ngIf="creatoruser==user" (click)="goToEditPerson()">Editar persona</ion-button>
+      <ion-button *ngIf="creatoruser==user && itemCount==0" (click)="deletePerson()" color="danger">Eliminar persona</ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>

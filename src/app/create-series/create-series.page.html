@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Crear serie</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding [fullscreen]="true">
+  <form [formGroup]="newseries" (ngSubmit)="submitForm()" novalidate>
+    <ion-list>
+      <ion-item lines="full">
+        <ion-label position="stacked">Nombre de la serie</ion-label>
+        <ion-input placeholder="Nombre" formControlName="SeriesName" type="text" required></ion-input>
+        <span class="error ion-padding" *ngIf="isSubmitted && errorControl.SeriesName.errors?.required">
+          Campo requerido.
+        </span>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label>Terminada</ion-label>
+        <ion-toggle formControlName="Finished"></ion-toggle>
+      </ion-item>
+    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button small expand="inline" shape="round" color="primary" type="submit">Enviar</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button small expand="inline" shape="round" color="primary" (click)="closeModal()">Cancelar</ion-button>
+        </ion-col>
+      </ion-row>
+      </ion-grid>
+  </form>
+</ion-content>

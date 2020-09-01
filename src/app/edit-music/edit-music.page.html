@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/edition/music/{{id}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar edición álbum</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding [fullscreen]="true">
+  <form [formGroup]="music" (ngSubmit)="submitForm()" novalidate>
+    <ion-list>
+      <ion-item lines="full">
+        <ion-label position="stacked">Año de edición</ion-label>
+        <ion-input placeholder="Ejemplo: 2020" [value]="music.Year" formControlName="Year" type="text">
+        </ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">EAN13</ion-label>
+        <ion-input placeholder="Ejemplo: 8491234567890" [value]="music.EAN13" formControlName="EAN13" type="text">
+        </ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">Formato</ion-label>
+        <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+        formControlName="Formato" type="text" value="{{music.Formato}}">
+          <ion-select-option *ngFor="let t of TipoLista" [value]="t">{{t}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">Número de pistas</ion-label>
+        <ion-input placeholder="Ejemplo: 10" [value]="music.NroPistas" formControlName="NroPistas" type="number">
+        </ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">Número de discos</ion-label>
+        <ion-input placeholder="Ejemplo: 1" [value]="music.NroDiscos" formControlName="NroDiscos" type="number">
+        </ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">Sello discográfico</ion-label>
+        <ion-input placeholder="Ejemplo: Sony Music" [value]="music.Sello" formControlName="Sello" type="text">
+        </ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">la versión (remasterizado, ed. especial, etc.)</ion-label>
+        <ion-input placeholder="Ejemplo: Versión europea remasterizada" [value]="music.NotasVersion" 
+        formControlName="NotasVersion" type="text">
+        </ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" shape="round" color="primary" type="submit">Enviar</ion-button>
+  </form>
+</ion-content>

@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="item/{{type}}/{{item}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Asignar persona/grupo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding [fullscreen]="true">
+  <ion-item><small>Asigna al menos una persona/grupo al item:</small></ion-item>
+  <form [formGroup]="formpeople" (ngSubmit)="addSelect()" novalidate>
+    <ion-list>
+      <ion-item lines="full">
+        <ion-label position="stacked">Selecciona persona o grupo</ion-label>
+        <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+        formControlName="PersonID" type="text">
+          <ion-select-option *ngFor="let p of people" [value]="p.PersonID">
+            {{p.LastNames}}<span *ngIf="p.LastNames && p.Names">, </span>{{p.Names}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked"><span style="color: red">*</span>Rol</ion-label>
+        <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+        formControlName="Role" type="text">
+        <div *ngIf="type=='book'">
+          <ion-select-option value="Autor">Autor</ion-select-option>
+          <ion-select-option value="Ilustrador">Ilustrador</ion-select-option>
+        </div>
+        <div *ngIf="type=='video'">
+          <ion-select-option value="Principal">Actor principal</ion-select-option>
+          <ion-select-option value="Secundario">Actor secundario</ion-select-option>
+          <ion-select-option value="Director">Director</ion-select-option>
+          <ion-select-option value="Productor">Productor</ion-select-option>
+          <ion-select-option value="Guionista">Guionista</ion-select-option>
+          <ion-select-option value="Compositor">Compositor</ion-select-option>
+          <ion-select-option value="Creador">Creador</ion-select-option>
+          <ion-select-option value="Artista">Artista</ion-select-option>
+          <ion-select-option value="Narrador">Narrador</ion-select-option>
+          <ion-select-option value="Presentador">Presentador</ion-select-option>
+        </div>
+        <div *ngIf="type=='music'">
+          <ion-select-option value="Artista">Artista</ion-select-option>
+        </div>
+        <div *ngIf="type=='game'">
+          <ion-select-option value="Director">Director</ion-select-option>
+          <ion-select-option value="Productor">Productor</ion-select-option>
+          <ion-select-option value="Escritor">Escritor</ion-select-option>
+          <ion-select-option value="Compositor">Compositor</ion-select-option>
+          <ion-select-option value="Actor">Actor</ion-select-option>
+        </div>
+        <div *ngIf="type=='comic'">
+          <ion-select-option value="Escritor">Escritor</ion-select-option>
+          <ion-select-option value="Ilustrador">Ilustrador</ion-select-option>
+          <ion-select-option value="Mangaka">Mangaka</ion-select-option>
+        </div>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-button shape="round" color="primary" type="submit">Añadir</ion-button>
+    <ion-button shape="round" color="primary" (click)="newPerson()">Nueva persona</ion-button>
+  </form>
+  <ion-list>
+    <ion-item lines="full" *ngIf="peopleadded.length<1">No hay personas aún.</ion-item>
+    <ion-item lines="full" *ngFor="let a of peopleadded">
+      <ion-chip><app-persona Names="{{a.Names}}" LastNames="{{a.LastNames}}" Role="{{a.Role}}"></app-persona>
+      <button ion-button (click)="removePerson(a)">x</button></ion-chip>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" shape="round" color="primary" (click)="process()">Aceptar</ion-button>
+</ion-content>

@@ -1,0 +1,13 @@
+<app-image-edition [id]="id" [isCreator]="CreatorUserID==user"></app-image-edition>
+<span *ngIf="Year != 0"><strong>Año:</strong> {{Year}}<br /></span>
+<span *ngIf="EAN13"><strong>EAN13:</strong> {{EAN13}}<br /></span>
+<span *ngIf="Formato"><strong>Formato:</strong> {{Formato}}<br /></span>
+<span *ngIf="NroPistas > 0"><strong>Nº pistas:</strong> {{NroPistas}}<br /></span>
+<span *ngIf="NroDiscos > 0"><strong>Nº discos:</strong> {{NroDiscos}}<br /></span>
+<span *ngIf="Sello"><strong>Sello:</strong> {{Sello}}<br /></span>
+<span *ngIf="NotasVersion"><strong>Notas Versión:</strong> {{NotasVersion}}<br /></span>
+
+<ion-button *ngIf="isOwned==null" (click)="addEditionToUser()">Agregar a mis items</ion-button>
+<ion-button *ngIf="isOwned" (click)="removeEditionFromUser()">Quitar de mis items</ion-button>
+<ion-button *ngIf="CreatorUserID==user" (click)="goToEdit()">Editar</ion-button>
+<ion-button *ngIf="CreatorUserID==user" color="danger" (click)="deleteEdition()">Eliminar</ion-button>

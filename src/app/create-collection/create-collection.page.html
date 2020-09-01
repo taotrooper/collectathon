@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Crear colección</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding [fullscreen]="true">
+  <form [formGroup]="newcollection" (ngSubmit)="submitForm()" novalidate>
+    <ion-list>
+      <ion-item lines="full">
+        <ion-label position="stacked">Nombre de la colección</ion-label>
+        <ion-input placeholder="Nombre" formControlName="CollectionName" type="text" required></ion-input>
+        <span class="error ion-padding" *ngIf="isSubmitted && errorControl.CollectionName.errors?.required">
+          Campo requerido.
+        </span>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-checkbox formControlName="Publica"></ion-checkbox>
+        <ion-label style="margin-left: 5px">¿Pública?</ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-grid style="text-align: center;">
+      <ion-row>
+        <ion-col>
+          <ion-button small expand="inline" shape="round" color="primary" type="submit">Enviar</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button small expand="inline" shape="round" color="primary" (click)="closeModal()">Cancelar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

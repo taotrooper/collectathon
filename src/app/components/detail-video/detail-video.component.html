@@ -1,0 +1,16 @@
+<app-image-edition [id]="id" [isCreator]="CreatorUserID==user"></app-image-edition>
+<span *ngIf="Year != 0"><strong>Año:</strong> {{Year}}<br /></span>
+<span *ngIf="EAN13"><strong>EAN13:</strong> {{EAN13}}<br /></span>
+<span *ngIf="FormatoVideo"><strong>Formato:</strong> {{FormatoVideo}}<br /></span>
+<span *ngIf="TipoVideo"><strong>Tipo de Vídeo:</strong> {{TipoVideo}}<br /></span>
+<span *ngIf="Sistema"><strong>Sistema:</strong> {{Sistema}}<br /></span>
+<span *ngIf="NroDiscosVideo > 0"><strong>Nº Discos:</strong> {{NroDiscosVideo}}<br /></span>
+<span *ngIf="RegionVideo"><strong>Región:</strong> {{RegionVideo}}<br /></span>
+<span *ngIf="Temporada > 0"><strong>Temporada:</strong> {{Temporada}}<br /></span>
+<span *ngIf="VolumenVideo > 0"><strong>Volumen:</strong> {{VolumenVideo}}<br /></span>
+<span *ngIf="NroEpisodios > 0"><strong>Nº Epìsodios:</strong> {{NroEpisodios}}<br /></span>
+
+<ion-button *ngIf="isOwned==null" (click)="addEditionToUser()">Agregar a mis items</ion-button>
+<ion-button *ngIf="isOwned" (click)="removeEditionFromUser()">Quitar de mis items</ion-button>
+<ion-button *ngIf="CreatorUserID==user" (click)="goToEdit()">Editar</ion-button>
+<ion-button *ngIf="CreatorUserID==user" color="danger" (click)="deleteEdition()">Eliminar</ion-button>

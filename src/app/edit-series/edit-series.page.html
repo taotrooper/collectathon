@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/series/{{SeriesID}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar serie</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding [fullscreen]="true">
+  <form [formGroup]="series" (ngSubmit)="submitForm()" novalidate>
+    <ion-list>
+      <ion-item lines="full">
+        <ion-label position="stacked">Nombre de la serie</ion-label>
+        <ion-input placeholder="Nombre" formControlName="SeriesName" [value]="series.SeriesName" 
+        type="text" required></ion-input>
+        <span class="error ion-padding" *ngIf="isSubmitted && errorControl.SeriesName.errors?.required">
+          Campo requerido.
+        </span>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-checkbox formControlName="Finished" [checked]="series.Finished"></ion-checkbox>
+        <ion-label style="margin-left: 5px">Terminada</ion-label>
+        <!--<ion-toggle [formControl]="series.controls['Finished']" [checked]="series.finished===1"></ion-toggle>-->
+      </ion-item>
+    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button small expand="inline" shape="round" color="primary" type="submit">Enviar</ion-button>
+        </ion-col>
+      </ion-row>
+      </ion-grid>
+  </form>
+</ion-content>

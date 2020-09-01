@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Mis colecciones
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list>
+    <ion-item detail button (click)='goToWishlist()'>
+      <ion-icon name="heart-outline"></ion-icon>
+      <div style="margin-left: 5px;">Lista de deseos</div>
+    </ion-item>
+    <ion-item-sliding *ngFor="let col of colecciones">
+      <ion-item-options side="start">
+        <ion-item-option color="danger" (click)="deleteCollection(col.CollectionID)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item detail button (click)='goToCollection(col.CollectionID)'>
+        <ion-icon name="albums"></ion-icon> 
+        <div style="margin-left: 5px;" class="ion-text-wrap">{{ col.CollectionName }}</div>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="primary">
+      <ion-icon name="add" (click)="goToNewCollection()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

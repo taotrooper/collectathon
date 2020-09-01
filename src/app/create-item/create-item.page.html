@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Crear item</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding [fullscreen]="true">
+  <form [formGroup]="newitem" (ngSubmit)="submitForm()" novalidate>
+    <ion-list>
+      <ion-item lines="full">
+        <ion-label position="stacked">Nombre del item</ion-label>
+        <ion-input placeholder="Nombre" formControlName="ItemName" type="text" required></ion-input>
+        <span class="error ion-padding" *ngIf="isSubmitted && errorControl.ItemName.errors?.required">
+          Campo requerido.
+        </span>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">Serie</ion-label>
+        <ion-select #SeriesID okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+        formControlName="SeriesID" type="text">
+          <ion-select-option [value]=null>Ninguna</ion-select-option>
+          <ion-select-option *ngFor="let s of series" [value]="s.SeriesID">{{s.SeriesName}}</ion-select-option>
+        </ion-select>
+        <ion-button (click)="goToNewSeries()" small>Nueva serie...</ion-button>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">Géneros (elige hasta 3)</ion-label>
+          <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+          formControlName="GenreID1" type="text">
+            <ion-select-option [value]=null>Ninguno</ion-select-option>
+            <ion-select-option *ngFor="let g of genres" [value]="g.GenreID">
+              {{g.GenreName}}
+            </ion-select-option>
+          </ion-select>
+          <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+          formControlName="GenreID2">
+            <ion-select-option [value]=null>Ninguno</ion-select-option>
+            <ion-select-option *ngFor="let g of genres" [value]="g.GenreID">
+              {{g.GenreName}}
+            </ion-select-option>
+          </ion-select>
+          <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+          formControlName="GenreID3">
+            <ion-select-option [value]=null>Ninguno</ion-select-option>
+            <ion-select-option *ngFor="let g of genres" [value]="g.GenreID">
+              {{g.GenreName}}
+            </ion-select-option>
+          </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" shape="round" color="primary" type="submit">Siguiente ></ion-button>
+  </form>
+</ion-content>

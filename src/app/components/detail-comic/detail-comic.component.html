@@ -1,0 +1,19 @@
+<app-image-edition [id]="id" [isCreator]="CreatorUserID==user"></app-image-edition>
+<span *ngIf="Year != 0"><strong>Año:</strong> {{Year}}<br /></span>
+<span *ngIf="EAN13"><strong>EAN13:</strong> {{EAN13}}<br /></span>
+<span *ngIf="ISBNComic"><strong>ISBN:</strong> {{ISBNComic}}<br /></span>
+<span *ngIf="TipoComic"><strong>Tipo:</strong> {{TipoComic}}<br /></span>
+<span *ngIf="FormatoComic"><strong>Formato:</strong> {{FormatoComic}}<br /></span>
+<span *ngIf="NroComic">
+  <strong *ngIf="TipoComic==='Grapas'">Nº:</strong>
+  <strong *ngIf="TipoComic!=='Grapas'">Tomo:</strong>
+   {{NroComic}}<br />
+</span>
+<span *ngIf="EditorialComic"><strong>Editorial:</strong> {{EditorialComic}}<br /></span>
+<span *ngIf="Origen"><strong>Origen:</strong> {{Origen}}<br /></span>
+<span *ngIf="IdiomaComic"><strong>Idioma:</strong> {{IdiomaComic}}<br /></span>
+
+<ion-button *ngIf="isOwned==null" (click)="addEditionToUser()">Agregar a mis items</ion-button>
+<ion-button *ngIf="isOwned" (click)="removeEditionFromUser()">Quitar de mis items</ion-button>
+<ion-button *ngIf="CreatorUserID==user" (click)="goToEdit()">Editar</ion-button>
+<ion-button *ngIf="CreatorUserID==user" color="danger" (click)="deleteEdition()">Eliminar</ion-button>

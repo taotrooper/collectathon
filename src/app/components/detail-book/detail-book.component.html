@@ -1,0 +1,14 @@
+<app-image-edition [id]="id" [isCreator]="CreatorUserID==user"></app-image-edition>
+<span *ngIf="Year != 0"><strong>Año:</strong> {{Year}}<br /></span>
+<span *ngIf="EAN13"><strong>EAN13:</strong> {{EAN13}}<br /></span>
+<span *ngIf="ISBN"><strong>ISBN:</strong> {{ISBN}}<br /></span>
+<span *ngIf="NroPaginas"><strong>Nº páginas:</strong> {{NroPaginas}}<br /></span>
+<span *ngIf="Editorial"><strong>Editorial:</strong> {{Editorial}}<br /></span>
+<span *ngIf="Edicion > 0"><strong>Edición:</strong> {{Edicion}}ª<br /></span>
+<span *ngIf="Idioma"><strong>Idioma:</strong> {{Idioma}}<br /></span>
+<span *ngIf="Tipo"><strong>Tipo:</strong> {{Tipo}}<br /></span>
+
+<ion-button *ngIf="!isOwned" (click)="addEditionToUser()">Agregar a mis items</ion-button>
+<ion-button *ngIf="isOwned" (click)="removeEditionFromUser()">Quitar de mis items</ion-button>
+<ion-button *ngIf="CreatorUserID==user" (click)="goToEdit()">Editar</ion-button>
+<ion-button *ngIf="CreatorUserID==user" color="danger" (click)="deleteEdition()">Eliminar</ion-button>

@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Mis ítems
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!--<ion-searchbar placeholder="Buscar..." [formControl]="searchControl"></ion-searchbar>-->
+  <ion-item><small>Arrastrar a la derecha para ver opciones.</small></ion-item>
+  <!--<ion-list *ngIf="!items">
+    <ion-item-sliding *ngFor="let ed of ediciones">
+      <ion-item-options side="start">
+        <ion-item-option color="danger" (click)="removeEditionFromUser(ed.EditionID)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <app-edition-list [ed]="ed"></app-edition-list>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-list *ngIf="items">
+    <ion-item-sliding *ngFor="let ed of items">
+      <ion-item-options side="start">
+        <ion-item-option color="danger" (click)="removeEditionFromUser(ed.EditionID)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <app-edition-list [ed]="ed"></app-edition-list>
+    </ion-item-sliding>
+  </ion-list>-->
+  <ion-list>
+    <ion-item-sliding *ngFor="let ed of ediciones">
+      <ion-item-options side="start">
+        <ion-item-option color="danger" (click)="removeEditionFromUser(ed.EditionID)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <app-edition-list [ed]="ed"></app-edition-list>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="primary">
+      <app-present-action-sheet></app-present-action-sheet>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-infinite-scroll #infiniteScroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

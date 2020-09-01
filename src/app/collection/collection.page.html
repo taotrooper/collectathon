@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="collections"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>{{name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <div style="text-align: center" *ngIf="user==myuser">
+      <ion-button (click)="editCollection()"><ion-icon name="pencil"></ion-icon>Editar</ion-button>
+      <ion-button (click)="deleteCollection()" color="danger">
+        <ion-icon name="trash"></ion-icon>Eliminar
+      </ion-button>
+    </div>
+    <ion-item *ngIf="this.ediciones.length == 0"><small>La colección está vacía.</small></ion-item>
+    <ion-item *ngIf="this.ediciones.length > 0 && user==myuser">
+      <small>Arrastrar a la derecha para ver opciones.</small>
+    </ion-item>
+    <ion-item-sliding *ngFor="let ed of ediciones">
+      <ion-item-options side="start">
+        <ion-item-option *ngIf="user==myuser" color="danger" 
+        (click)="deleteEditionFromCollection(ed.ItemID, ed.EditionID)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <app-edition-list [ed]="ed"></app-edition-list>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab *ngIf="user==myuser" horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="primary">
+      <ion-icon name="add" (click)="goToAddCollection()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

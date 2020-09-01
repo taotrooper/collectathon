@@ -1,0 +1,13 @@
+<ion-chip *ngFor="let w of webs">
+  <ion-icon [name]="getIcon(w.URL)"></ion-icon>
+  <ion-label>
+    <a href="{{w.URL}}" class="chiplink">{{w.Text}}</a>
+  </ion-label>
+  <div *ngIf="w.CreatorUserID==user">
+    <ion-icon name="pencil" (click)="goToEditWebsite(w.WebsiteID)"></ion-icon>
+    <ion-icon name="close" (click)="deleteWebsite(w.WebsiteID)"></ion-icon>
+  </div>
+</ion-chip>
+<ion-chip (click)="goToNewWebsite()">
+  <ion-icon name="add"></ion-icon><ion-label>web</ion-label>
+</ion-chip>

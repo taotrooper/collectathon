@@ -1,0 +1,28 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="explore"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Series</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item-sliding *ngFor="let s of series">
+      <ion-item detail (click)="goToSeries(s.SeriesID)" *ngIf="s.CreatorUserID>0">
+        <ion-icon top name="pricetags"></ion-icon>
+        <ion-label style="margin-left: 5px;" class="ion-text-wrap">{{ s.SeriesName }}</ion-label>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="primary">
+      <ion-icon name="add" (click)="goToNewSeries()"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

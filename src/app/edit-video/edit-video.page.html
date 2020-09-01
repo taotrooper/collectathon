@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/edition/video/{{id}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar edición vídeo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding [fullscreen]="true">
+  <form [formGroup]="video" (ngSubmit)="submitForm()" novalidate>
+   <ion-list>
+    <ion-item lines="full">
+        <ion-label position="stacked">Año de edición</ion-label>
+        <ion-input placeholder="Ejemplo: 2020" [value]="video.Year" formControlName="Year" 
+        type="text"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">EAN13</ion-label>
+      <ion-input placeholder="Ejemplo: 8491234567890" [value]="video.EAN13" formControlName="EAN13" type="text">
+      </ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Formato de vídeo</ion-label>
+      <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+      formControlName="FormatoVideo" type="text" value="{{video.FormatoVideo}}" (ionChange)="getRegions()">
+        <ion-select-option *ngFor="let f of FormatoLista" [value]="f">{{f}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Tipo de vídeo</ion-label>
+      <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+      formControlName="TipoVideo" type="text" value="{{video.TipoVideo}}">
+        <ion-select-option *ngFor="let t of TipoLista" [value]="t">{{t}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Sistema de codificación</ion-label>
+      <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+      formControlName="Sistema" type="text" value="{{video.Sistema}}">
+        <ion-select-option *ngFor="let s of SistemaLista" [value]="s">{{s}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Número de discos</ion-label>
+      <ion-input placeholder="Ejemplo: 1" [value]="video.NroDiscosVideo" formControlName="NroDiscosVideo" 
+      type="number"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="stacked">Región (si aplica)</ion-label>
+      <ion-select okText="Aceptar" cancelText="Cancelar" interface="alert" placeholder="Seleccionar" 
+      formControlName="RegionVideo" type="text" value="{{video.RegionVideo}}">
+        <ion-select-option value="null">Ninguno</ion-select-option>
+        <ion-select-option *ngFor="let r of RegionLista" 
+        [value]="r">{{r}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="full" *ngIf="video.value['TipoVideo']==='Serie'">
+      <ion-label position="stacked">Temporada (si aplica)</ion-label>
+      <ion-input placeholder="Ejemplo: 1" [value]="video.Temporada" formControlName="Temporada" 
+      type="number"></ion-input>
+    </ion-item>
+    <ion-item lines="full" *ngIf="video.value['TipoVideo']!=='Película'">
+      <ion-label position="stacked">Volumen (si aplica)</ion-label>
+      <ion-input placeholder="Ejemplo: 1" [value]="video.VolumenVideo" formControlName="VolumenVideo" 
+      type="number"></ion-input>
+    </ion-item>
+    <ion-item lines="full" *ngIf="video.value['TipoVideo']==='Serie'">
+      <ion-label position="stacked">Número de episodios (si aplica)</ion-label>
+      <ion-input placeholder="Ejemplo: 10" [value]="video.NroEpisodios" formControlName="NroEpisodios" 
+      type="number"></ion-input>
+    </ion-item>
+    </ion-list>
+    <ion-button expand="block" shape="round" color="primary" type="submit">Enviar</ion-button>
+  </form>
+</ion-content>

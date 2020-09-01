@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/person/{{PersonID}}"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar persona</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding [fullscreen]="true">
+  <form [formGroup]="person" (ngSubmit)="submitForm()" novalidate>
+    <ion-list>
+      <ion-item lines="full">
+        <ion-label position="stacked">Nombres/pseudónimo de la persona o grupo</ion-label>
+        <ion-input placeholder="Nombre" formControlName="Names" [value]="person.Names" 
+        type="text" required></ion-input>
+        <span class="error ion-padding" *ngIf="isSubmitted && errorControl.Names.errors?.required">
+          Campo requerido.
+        </span>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="stacked">Apellidos de la persona (si tiene)</ion-label>
+        <ion-input placeholder="Apellidos" formControlName="LastNames" [value]="person.LastNames" 
+        type="text"></ion-input>
+      </ion-item>
+    </ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-button small expand="inline" shape="round" color="primary" type="submit">Enviar</ion-button>
+        </ion-col>
+      </ion-row>
+      </ion-grid>
+  </form>
+</ion-content>
