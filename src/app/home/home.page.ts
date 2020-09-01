@@ -13,9 +13,9 @@ export class HomePage {
   }
 
   ngOnInit() {
-    if(!localStorage.getItem('user')) {
+    /*if(!localStorage.getItem('user')) {
       this.navCtrl.navigateRoot("/login");
-    }
+    }*/
   }
 
   exitApp(){

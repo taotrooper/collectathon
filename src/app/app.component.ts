@@ -27,8 +27,7 @@ export class AppComponent {
     private router: Router
   ) {
     console.log("hello");
-    if(!localStorage.getItem('user')) {
-      /*this.rootPage = "HomePage";*/
+    if(!localStorage.getItem('UserID')) {
       this.rootPage = '/login'
     }
     this.sideMenu();

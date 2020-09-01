@@ -34,7 +34,7 @@
           <ion-select-option value="ItemName">Título</ion-select-option>
           <ion-select-option value="Year">Año de edición</ion-select-option>
           <ion-select-option value="EAN13">EAN13</ion-select-option>
-          <ion-select-option *ngFor="let d of campos2" [value]="d.campo">{{d.nombre}}</ion-select-option>
+          <!--<ion-select-option *ngFor="let d of campos2" [value]="d.campo">{{d.nombre}}</ion-select-option>-->
           <div *ngIf="formcriteria.value['tipo']=='book'">
             <ion-select-option value="ISBN">ISBN</ion-select-option>
             <ion-select-option value="Editorial">Editorial</ion-select-option>

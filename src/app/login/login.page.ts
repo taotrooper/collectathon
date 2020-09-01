@@ -16,7 +16,8 @@ export class LoginPage implements OnInit {
 
 /*  user: any;*/
   user= { email : '', password : ''};
-  loginform: FormGroup;
+  loginform/*: FormGroup*/ = null;
+  segm: string = "login";
   isSubmitted = false;
 
   constructor(
@@ -29,7 +30,8 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder) {
       this.loginform = new FormGroup({
         email: new FormControl(),
-        password: new FormControl()
+        password: new FormControl(),
+        segm: new FormControl()
      });
     this.ngFireAuth.onAuthStateChanged((user) => {
       if(user) {
@@ -67,7 +69,8 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.loginform = this.formBuilder.group({
       'email' : [null, Validators.required],
-      'password' : [null, Validators.required]
+      'password' : [null, Validators.required],
+      'segm' : [this.segm]
     });
   }
 
@@ -131,6 +134,12 @@ export class LoginPage implements OnInit {
     } else {
       this.auth.SendPasswordReset(this.loginform.value['email']);
     }
+  }
+
+  segmentChanged(event: any) {
+    /*console.log('Segment changed', event);*/
+    this.segm = this.loginform.value['segm'];
+    console.log();
   }
 
   exitApp(){

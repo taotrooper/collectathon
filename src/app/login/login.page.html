@@ -8,7 +8,15 @@
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="loginform">    
+  <form [formGroup]="loginform">
+    <ion-segment formControlName="segm" (ionChange)="segmentChanged($event)" [value]="loginform.segm">
+      <ion-segment-button value="login">
+        <ion-label>Iniciar sesión</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="register">
+        <ion-label>Crear cuenta</ion-label>
+      </ion-segment-button>
+    </ion-segment>
     <ion-item lines="full">
       <ion-label position="floating">Email</ion-label>
       <ion-input type="email" #email formControlName="email" required></ion-input>
@@ -23,9 +31,9 @@
       <ion-col style="text-align: center">
       <div padding>
         <ion-button (click)="login(loginform.email, loginform.password)" type="submit" 
-        color="primary" block>Iniciar sesión</ion-button>
+        color="primary" block *ngIf="segm==='login'">Iniciar sesión</ion-button>
         <ion-button (click)="signin(loginform.email, loginform.password)" type="submit" 
-        color="secondary" block>Registrarse</ion-button>
+        color="primary" block *ngIf="segm==='register'">Registrarse</ion-button>
         <!--<ion-button type="submit" color="danger" (click)="loginGoogle()">
           <ion-icon name="logo-google" style="margin-right: 5px"></ion-icon>Con cuenta Google
         </ion-button>-->

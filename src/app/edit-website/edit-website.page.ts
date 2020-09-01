@@ -14,10 +14,10 @@ export class EditWebsitePage implements OnInit {
 
   id: any;
   type: any;
-  URL: string;
-  Text: boolean;
+  SiteURL: string;
+  SiteText: boolean;
   WebsiteID: any;
-  web: FormGroup;
+  web/*: FormGroup*/ = null;
 
   isSubmitted = false;
 
