@@ -100,8 +100,8 @@ export class DetailGameComponent implements OnInit {
   
     await alert.present();
     /*let result = await alert.onDidDismiss();
-    console.log(result);*/
-    this.navCtrl.navigateForward("/edition/game/"+this.id);
+    console.log(result);
+    this.navCtrl.navigateForward("/edition/game/"+this.id);*/
   }
 
   async removeEditionFromUser() {
@@ -137,8 +137,8 @@ export class DetailGameComponent implements OnInit {
 
     await alert.present();
     /*let result = await alert.onDidDismiss();
-    console.log(result);*/
-    this.navCtrl.navigateForward("/edition/game/"+this.id);
+    console.log(result);
+    this.navCtrl.navigateForward("/edition/game/"+this.id);*/
   }
 
   async deleteEdition() {

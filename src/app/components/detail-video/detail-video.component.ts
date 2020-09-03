@@ -104,8 +104,8 @@ export class DetailVideoComponent implements OnInit {
   
     await alert.present();
     /*let result = await alert.onDidDismiss();
-    console.log(result);*/
-    this.navCtrl.navigateForward("/edition/video/"+this.id);
+    console.log(result);
+    this.navCtrl.navigateForward("/edition/video/"+this.id);*/
   }
 
   async removeEditionFromUser() {
@@ -141,8 +141,8 @@ export class DetailVideoComponent implements OnInit {
 
     await alert.present();
     /*let result = await alert.onDidDismiss();
-    console.log(result);*/
-    this.navCtrl.navigateForward("/edition/video/"+this.id);
+    console.log(result);
+    this.navCtrl.navigateForward("/edition/video/"+this.id);*/
   }
 
   async deleteEdition() {

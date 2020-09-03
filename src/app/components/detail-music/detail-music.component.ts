@@ -98,8 +98,8 @@ export class DetailMusicComponent implements OnInit {
   
     await alert.present();
     /*let result = await alert.onDidDismiss();
-    console.log(result);*/
-    this.navCtrl.navigateForward("/edition/music/"+this.id);
+    console.log(result);
+    this.navCtrl.navigateForward("/edition/music/"+this.id);*/
   }
 
   async removeEditionFromUser() {
@@ -135,8 +135,8 @@ export class DetailMusicComponent implements OnInit {
 
     await alert.present();
     /*let result = await alert.onDidDismiss();
-    console.log(result);*/
-    this.navCtrl.navigateForward("/edition/music/"+this.id);
+    console.log(result);
+    this.navCtrl.navigateForward("/edition/music/"+this.id);*/
   }
 
   async deleteEdition() {

@@ -44,11 +44,18 @@ export class ApiRestService {
   }
 
   constructor(private httpClient : HttpClient, private navCtrl: NavController, private toast: ToastController) {
+    this.user = localStorage.getItem('user');  
+    if(this.user) {
       this.setUserID();
+    }
    }
 
    private setUserID() {
      this.UserID = parseInt(localStorage.getItem('UserID'));
+     if(!this.UserID) {
+       this.user = localStorage.getItem('user');
+       this.login(this.user['email'], this.user['uid']);
+     }
      /*this.UserID = 1;*/
    }
 
@@ -60,6 +67,7 @@ export class ApiRestService {
   }
 
   public getUserID() {
+    if(!this.UserID) this.setUserID();
     return this.UserID;
   }
 
@@ -306,14 +314,7 @@ export class ApiRestService {
      p.CreatorUserID = this.UserID;
       console.log("createPerson: ",p);
     if (p.Names != null) {
-     this.httpClient.post(this.path + "/person/create.php", p,{observe: 'response'})
-       .subscribe(data => {
-          console.log("data body: ",data['body']['PersonID']);
-          return(data['body']['PersonID']);
-        }, error => {
-         console.log(error);
-       }
-      );
+     return this.httpClient.post(this.path + "/person/create.php", p,{observe: 'response'});
     }
   }
 

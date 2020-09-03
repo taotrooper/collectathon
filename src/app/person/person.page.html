@@ -12,6 +12,12 @@
 
 <ion-content [fullscreen]="true">
   <ion-item><h1>{{names}} {{lastnames}}</h1></ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-button *ngIf="creatoruser==user" (click)="goToEditPerson()">Editar persona</ion-button>
+      <ion-button *ngIf="creatoruser==user && itemCount==0" (click)="deletePerson()" color="danger">Eliminar persona</ion-button>
+    </ion-row>
+  </ion-grid>
   <ion-item><app-website-list [id]="id" type="person"></app-website-list></ion-item>
   <ion-list>
     <ion-item-sliding *ngIf="itemCount <= 0">
@@ -24,11 +30,4 @@
       </ion-item>
     </ion-item-sliding>
   </ion-list>
-
-  <ion-grid>
-    <ion-row>
-      <ion-button *ngIf="creatoruser==user" (click)="goToEditPerson()">Editar persona</ion-button>
-      <ion-button *ngIf="creatoruser==user && itemCount==0" (click)="deletePerson()" color="danger">Eliminar persona</ion-button>
-    </ion-row>
-  </ion-grid>
 </ion-content>

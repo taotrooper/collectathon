@@ -102,8 +102,8 @@ export class DetailComicComponent implements OnInit {
   
     await alert.present();
     /*let result = await alert.onDidDismiss();
-    console.log(result);*/
-    this.navCtrl.navigateForward("/edition/comic/"+this.id);
+    console.log(result);
+    this.navCtrl.navigateForward("/edition/comic/"+this.id);*/
   }
 
   async removeEditionFromUser() {
@@ -139,8 +139,8 @@ export class DetailComicComponent implements OnInit {
 
     await alert.present();
     /*let result = await alert.onDidDismiss();
-    console.log(result);*/
-    this.navCtrl.navigateForward("/edition/comic/"+this.id);
+    console.log(result);
+    this.navCtrl.navigateForward("/edition/comic/"+this.id);*/
   }
 
   async deleteEdition() {

@@ -111,8 +111,8 @@ export class DetailBookComponent implements OnInit {
   
     await alert.present();
     /*let result = await alert.onDidDismiss();
-    console.log(result);*/
-    this.navCtrl.navigateForward("/edition/book/"+this.id);
+    console.log(result);
+    this.navCtrl.navigateForward("/edition/book/"+this.id);*/
   }
 
   async removeEditionFromUser() {
@@ -149,8 +149,8 @@ export class DetailBookComponent implements OnInit {
 
     await alert.present();
     /*let result = await alert.onDidDismiss();
-    console.log(result);*/
-    this.navCtrl.navigateForward("/edition/book/"+this.id);
+    console.log(result);
+    this.navCtrl.navigateForward("/edition/book/"+this.id);*/
   }
 
   async deleteEdition() {

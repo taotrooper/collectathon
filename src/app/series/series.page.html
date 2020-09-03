@@ -13,10 +13,17 @@
 <ion-content [fullscreen]="true">
 
   <ion-list>
+    <ion-item><h1>{{name}}</h1></ion-item>
     <ion-item-sliding>
       <ion-label style="margin-left: 5px;" class="ion-text-wrap">
         <small>Esta serie está marcada como <span *ngIf="finished==0">no</span> terminada.</small>
       </ion-label>
+      <ion-grid>
+        <ion-row>
+          <ion-button *ngIf="creatorUser==user" (click)="goToEditSeries()">Editar serie</ion-button>
+          <ion-button *ngIf="creatorUser==user && itemCount==0" (click)="deleteSeries()" color="danger">Eliminar serie</ion-button>
+        </ion-row>
+      </ion-grid>
     </ion-item-sliding>
     <ion-item-sliding *ngIf="itemCount <= 0">
       <ion-label style="margin-left: 5px;" class="ion-text-wrap">No existen ediciones para esta serie.</ion-label>
@@ -28,11 +35,4 @@
       </ion-item>
     </ion-item-sliding>
   </ion-list>
-
-  <ion-grid>
-    <ion-row>
-      <ion-button *ngIf="creatorUser==user" (click)="goToEditSeries()">Editar serie</ion-button>
-      <ion-button *ngIf="creatorUser==user && itemCount==0" (click)="deleteSeries()" color="danger">Eliminar serie</ion-button>
-    </ion-row>
-  </ion-grid>
 </ion-content>

@@ -15,6 +15,11 @@
 <ion-content [fullscreen]="true">
 
   <ion-list>
+    <ion-item *ngIf="this.colecciones.length == 0"><small>Aún no tienes colecciones. Añade alguna presionando
+       el ícono de la parte inferior.</small></ion-item>
+    <ion-item *ngIf="this.colecciones.length > 0">
+      <small>Arrastrar a la derecha para ver opciones.</small>
+    </ion-item>
     <ion-item detail button (click)='goToWishlist()'>
       <ion-icon name="heart-outline"></ion-icon>
       <div style="margin-left: 5px;">Lista de deseos</div>

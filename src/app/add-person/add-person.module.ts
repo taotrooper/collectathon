@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AddPersonPageRoutingModule } from './add-person-routing.module';
 
 import { AddPersonPage } from './add-person.page';
+import { CreatePersonPageModule } from '../create-person/create-person.module';
 import { ComponentsModule } from '../components/components.module'
 
 @NgModule({
@@ -16,6 +17,7 @@ import { ComponentsModule } from '../components/components.module'
     ReactiveFormsModule,
     IonicModule,
     AddPersonPageRoutingModule,
+    CreatePersonPageModule,
     ComponentsModule
   ],
   declarations: [AddPersonPage]

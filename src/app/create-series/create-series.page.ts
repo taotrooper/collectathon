@@ -19,8 +19,9 @@ export class CreateSeriesPage implements OnInit {
 
   isSubmitted = false;
 
-  constructor(private modalController: ModalController, private navParams: NavParams, public http: ApiRestService, private navCtrl: NavController,
-    private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private modalController: ModalController, private navParams: NavParams, public http: ApiRestService, 
+    private navCtrl: NavController, private route: ActivatedRoute, private router: Router, 
+    private formBuilder: FormBuilder) {
       this.newseries = new FormGroup({
         SeriesName: new FormControl(),
         Finished: new FormControl()

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, ModalController } from '@ionic/angular';
 import { ApiRestService } from '../api-rest.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 import { findIndex } from 'rxjs/operators';
+import { ChangeDetectorRef } from '@angular/core';
+import { CreatePersonPage } from '../create-person/create-person.page';
 
 @Component({
   selector: 'app-add-person',
@@ -20,7 +22,8 @@ export class AddPersonPage implements OnInit {
   formpeople = null;
 
   constructor(public http: ApiRestService, private navCtrl: NavController, private route: ActivatedRoute, 
-    private router: Router, private formBuilder: FormBuilder) {
+    private router: Router, public modalController: ModalController, private formBuilder: FormBuilder,
+    private changeRef: ChangeDetectorRef) {
       this.item = this.route.snapshot.params.item;
       this.type = this.route.snapshot.params.type;
       this.formpeople = new FormGroup({
@@ -82,19 +85,23 @@ export class AddPersonPage implements OnInit {
     this.formpeople.reset();
   }
 
-  newPerson() {
-    /*if(!this.peopleadded.find(e => e['Names'] == this.nextitem.value['Names'] 
-      && e['LastNames'] == this.nextitem.value['LastNames'])) {
-      var p = {
-        'Names': this.nextitem.value['Names'],
-        'LastNames': this.nextitem.value['LastNames']
-      };
-      this.http.createPerson(p);
-      this.people = [];
-      this.getPersonList();
-    }
-    this.nextitem.reset();*/
-    this.navCtrl.navigateForward("/create-person");
+  async newPerson() {
+    //this.navCtrl.navigateForward("/create-person");
+    console.log("Página modal");
+    const modal = await this.modalController.create({
+      component: CreatePersonPage,
+      componentProps: {}
+    });
+
+    modal.onDidDismiss().then((dataReturned) => {
+      if (dataReturned != null) {
+        this.people = [];
+        this.getPersonList();
+        this.changeRef.detectChanges();
+      }
+    });
+
+    return await modal.present();
   }
 
   removePerson(a: any) {
