@@ -12,8 +12,6 @@ export class EditionListComponent implements OnInit {
   @Input('ed') ed: any;
   isOwned: any;
   thumburl: any = null;
-  /*imgserver = "http://91.117.92.244:8081/collectathon/uploads/";
-  thumbdir = "http://91.117.92.244:8081/collectathon/uploads/thumb/";*/
   imgserver = "http://www.mercury-retrograde.net/tfm/collectathon/uploads/";
   thumbdir = "http://www.mercury-retrograde.net/tfm/collectathon/uploads/thumb/";
 
